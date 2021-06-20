@@ -5,30 +5,44 @@ const typescript = require('@rollup/plugin-typescript');
 const resolve = require('rollup-plugin-node-resolve');
 const commonJs = require('rollup-plugin-commonjs');
 const cwd = process.cwd();
+const entryPath = path.resolve(cwd, 'src/index.ts');
+
+// umd 打包输出配置
+const umdOutputConfig = [
+  {
+    file: path.resolve(cwd, 'dist', 'tinyuen-utils.js'),
+    format: 'umd',
+    name: 'tinyuenUtils',
+  },
+  {
+    file: path.resolve(cwd, 'dist', 'tinyuen-utils.min.js'),
+    format: 'umd',
+    name: 'tinyuenUtils',
+    sourcemap: true,
+    plugins: [
+      terser()
+    ]
+  },
+];
+
+// esm 打包输出配置
+const esOutputConfig =  {
+  format: 'esm',
+  dir: 'es'
+};
+
+// commonjs 打包输出配置
+const cjsOutputConfig = {
+  format: 'cjs',
+  dir: 'lib'
+};
 
 export default {
-  input: path.resolve(cwd, 'src/index.ts'),
+  input: entryPath,
   output: [
-    // umd
-    {
-      file: path.resolve(cwd, 'dist', 'tinyuen-utils.js'),
-      format: 'umd',
-      name: 'tinyuenUtils',
-    },
-    // umd min.js
-    {
-      file: path.resolve(cwd, 'dist', 'tinyuen-utils.min.js'),
-      format: 'umd',
-      name: 'tinyuenUtils',
-      sourcemap: true,
-      plugins: [
-        terser()
-      ]
-    },
-    {
-      format: 'esm',
-      dir: 'es'
-    }
+    ...umdOutputConfig,
+    esOutputConfig,
+    cjsOutputConfig,
   ],
   plugins: [
     commonJs(),

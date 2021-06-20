@@ -1,3 +1,3 @@
-import { device } from '../src';
+import { device } from '../es';
 
 console.log('当前环境：', device.isWeChat());
