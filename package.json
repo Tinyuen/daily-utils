@@ -1,0 +1,56 @@
+{
+  "name": "@tinyuen/utils",
+  "version": "0.0.1",
+  "description": "daily utils for development",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack serve -c ./scripts/webpack/webpack.dev.config.js",
+    "clean": "rimraf es lib dist types",
+    "build": "npm run clean && rollup -c ./scripts/rollup/rollup.config.js",
+    "pub:patch": "npm version patch && npm publish --access public",
+    "pub:minor": "npm version minor && npm publish --access public",
+    "pub:major": "npm version major && npm publish --access public",
+    "pub": "npm run pub:patch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tinyuen/daily-utils.git"
+  },
+  "author": "tianxiaohu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tinyuen/daily-utils/issues"
+  },
+  "keywords": [
+    "utils"
+  ],
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "typings": "types/index.d.ts",
+  "files": [
+    "es",
+    "dist",
+    "lib",
+    "types"
+  ],
+  "homepage": "https://github.com/Tinyuen/daily-utils#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "@babel/preset-env": "^7.14.5",
+    "@babel/preset-typescript": "^7.14.5",
+    "@rollup/plugin-typescript": "^8.2.1",
+    "cross-env": "^7.0.3",
+    "html-webpack-plugin": "^5.3.1",
+    "rimraf": "^3.0.2",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "ts-loader": "^9.2.3",
+    "typescript": "^4.3.4",
+    "webpack": "^5.39.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
