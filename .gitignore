@@ -4,7 +4,6 @@ dist/
 lib/
 types/
 node_modules/
-scripts/
 # Editor common directories and files
 .idea
 .vscode
