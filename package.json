@@ -4,7 +4,7 @@
   "description": "daily utils for development",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack serve -c ./scripts/webpack/webpack.dev.config.js",
+    "dev": "webpack serve -c scripts/webpack/webpack.config.dev-serve.js",
     "clean": "rimraf es lib dist types",
     "build:src": "rollup -c ./scripts/rollup/rollup.config.js",
     "build:types": "tsc --outDir types -d --emitDeclarationOnly",
