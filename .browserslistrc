@@ -1,4 +1,6 @@
 # support browsers
 
+> 1%
+ie >= 10
 android >= 4.2
 ios >= 8.0

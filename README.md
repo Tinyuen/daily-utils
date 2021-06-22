@@ -1,10 +1,3 @@
-
-<p align="center">
-  <a href="">
-    <img width="150" style="margin-top: 30px;" src="https://cdn.jsdelivr.net/gh/Tinyuen/blogcdn@0.0.1/img/author-avatar-pet.jpeg">
-  </a>
-</p>
-
 <h1 align="center">daily-utils</h1>
 
 <div align="center">
@@ -25,10 +18,13 @@ npm install @tinyuen/utils --save
 yarn add @tinyuen/utils
 ```
 
-## Use
+## Usage
 ```javascript
+import { device } from '@tinyuen/utils';
 
+console.log(device.isWeChat())
 ```
 
-## 
+## Tips
+
 

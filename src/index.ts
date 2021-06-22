@@ -1,6 +1,2 @@
-import _device from './device';
-
-const a = Promise.resolve('aaa');
-console.log(a);
-
-export const device = _device;
+export { default as device } from './device';
+export { default as axios } from './axios';

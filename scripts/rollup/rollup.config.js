@@ -1,56 +1,86 @@
-import {terser} from "rollup-plugin-terser";
+import { terser } from "rollup-plugin-terser";
+import { babel } from '@rollup/plugin-babel';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
+import typescript from '@rollup/plugin-typescript';
+import progress from 'rollup-plugin-progress';
+import {BANNER_TEXT, REG_DIR} from "./const";
+import glob from "glob";
+
 const path = require('path');
-const babel = require('rollup-plugin-babel');
-const typescript = require('@rollup/plugin-typescript');
-const resolve = require('rollup-plugin-node-resolve');
-const commonJs = require('rollup-plugin-commonjs');
 const cwd = process.cwd();
 const entryPath = path.resolve(cwd, 'src/index.ts');
 
-// umd 打包输出配置
-const umdOutputConfig = [
-  {
-    file: path.resolve(cwd, 'dist', 'tinyuen-utils.js'),
-    format: 'umd',
-    name: 'tinyuenUtils',
-  },
-  {
-    file: path.resolve(cwd, 'dist', 'tinyuen-utils.min.js'),
-    format: 'umd',
-    name: 'tinyuenUtils',
-    sourcemap: true,
-    plugins: [
-      terser()
-    ]
-  },
+
+const commonPlugins = [
+  progress({
+    clearLine: false // default: true
+  }),
+  json(),
+  commonjs(),
+  nodeResolve(),
+  typescript(),
+  babel({
+    include: 'src',
+    exclude: 'node_modules/**',
+    extensions: ['.ts', '.js'],
+    babelHelpers: 'bundled',
+  })
 ];
 
-// esm 打包输出配置
-const esOutputConfig =  {
-  format: 'esm',
-  dir: 'es'
+const getEntry = () => {
+  const entry = glob
+    .sync(path.resolve(cwd, 'src/**/index.ts'))
+    .reduce((result, item) => {
+      console.log(item);
+      const [dirName] = item.match(REG_DIR) || [];
+      if (dirName) {
+        result[dirName] = path.resolve(cwd, 'src', dirName, 'index.ts');
+      }
+      return result;
+    }, {});
+  entry['index'] = path.resolve(cwd, 'src/index.ts');
+  return entry;
 };
 
-// commonjs 打包输出配置
-const cjsOutputConfig = {
-  format: 'cjs',
-  dir: 'lib'
-};
-
-export default {
-  input: entryPath,
-  output: [
-    ...umdOutputConfig,
-    esOutputConfig,
-    cjsOutputConfig,
-  ],
-  plugins: [
-    commonJs(),
-    resolve(),
-    typescript(),
-    babel({
-      include: 'src',
-      exclude: 'node_modules/!**',
-    })
-  ]
-}
+export default [
+  {
+    input: entryPath,
+    output: [
+      {
+        file: path.resolve(cwd, 'dist', 'tinyuen-utils.js'),
+        format: 'umd',
+        name: 'tinyuenUtils',
+        banner: BANNER_TEXT,
+      },
+      {
+        file: path.resolve(cwd, 'dist', 'tinyuen-utils.min.js'),
+        format: 'umd',
+        name: 'tinyuenUtils',
+        sourcemap: true,
+        banner: BANNER_TEXT,
+        plugins: [
+          terser()
+        ]
+      }
+    ],
+    plugins: commonPlugins,
+  },
+  {
+    input: getEntry(),
+    output: [
+      {
+        format: 'esm',
+        exports: 'auto',
+        dir: 'es',
+      },
+      {
+        format: 'cjs',
+        exports: 'named',
+        dir: 'lib',
+      }
+    ],
+    plugins: commonPlugins,
+  }
+]
