@@ -10,7 +10,7 @@
 
 </div>
 
-## Install
+## ⚙ Install
 
 ```bash
 npm install @tinyuen/utils --save
@@ -18,13 +18,24 @@ npm install @tinyuen/utils --save
 yarn add @tinyuen/utils
 ```
 
-## Usage
+## 🚀 Usage
 ```javascript
 import { device } from '@tinyuen/utils';
 
 console.log(device.isWeChat())
 ```
 
-## Tips
+## 🥤 Document
+
+### device
+- device.isWeChat()  判断是否是微信环境
+- ...
+
+### axios
+- ...
+
+## ⚠️ Warning
+
+工具库不包含任何 polyfill，包括但不限于 `Promise`、`map`、`includes`... 需要使用方手动处理 polyfill。
 
 
