@@ -5,7 +5,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import typescript from '@rollup/plugin-typescript';
 import progress from 'rollup-plugin-progress';
-import {BANNER_TEXT, REG_DIR} from "./const";
+import { BANNER_TEXT, LIBRARY_NAME, REG_DIR } from "./const";
 import glob from "glob";
 
 const path = require('path');
@@ -51,13 +51,13 @@ export default [
       {
         file: path.resolve(cwd, 'dist', 'tinyuen-utils.js'),
         format: 'umd',
-        name: 'tinyuenUtils',
+        name: LIBRARY_NAME,
         banner: BANNER_TEXT,
       },
       {
         file: path.resolve(cwd, 'dist', 'tinyuen-utils.min.js'),
         format: 'umd',
-        name: 'tinyuenUtils',
+        name: LIBRARY_NAME,
         sourcemap: true,
         banner: BANNER_TEXT,
         plugins: [

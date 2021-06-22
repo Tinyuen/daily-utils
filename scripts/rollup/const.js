@@ -11,7 +11,4 @@ export const BANNER_TEXT = [
   '',
 ].join('\n');
 
-export const OUTPUT_PATH_MAP = {
-  esm: 'es',
-  cjs: 'lib',
-};
+export const LIBRARY_NAME = 'tinUtil';
