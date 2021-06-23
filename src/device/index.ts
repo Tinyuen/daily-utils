@@ -11,7 +11,7 @@ const getUserAgent = (ua?: string) => {
   if (ua) {
     return ua.toLowerCase();
   }
-  return typeof window !== undefined && navigator.userAgent ? navigator.userAgent.toLowerCase() : '';
+  return typeof window !== 'undefined' && navigator.userAgent ? navigator.userAgent.toLowerCase() : '';
 };
 
 /**

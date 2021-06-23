@@ -1,3 +1,18 @@
 {
-  "root": true
+  "root": true,
+  "extends": [
+    "tinyuen/typescript"
+  ],
+  "rules": {
+    "import/prefer-default-export": "off",
+    "no-console": "off",
+    "quotes": ["error", "single"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "typescript/no-object-literal-type-assertion": "off",
+    "semi": ["error", "always"],
+    "no-shadow": ["error", { "allow": ["done"] }],
+    "no-var": "error",
+    "arrow-parens": "off",
+    "no-multiple-empty-lines": "off"
+  }
 }
