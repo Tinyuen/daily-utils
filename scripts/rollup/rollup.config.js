@@ -13,23 +13,6 @@ const PACK_ENV = process.env.PACK_ENV;
 const cwd = process.cwd();
 const entryPath = path.resolve(cwd, 'src/index.ts');
 
-
-const commonPlugins = [
-  progress({
-    clearLine: false, // default: true
-  }),
-  json(),
-  commonjs(),
-  nodeResolve({ extensions: FILE_EXTENSION }),
-  typescript(),
-  babel({
-    include: 'src',
-    exclude: 'node_modules/**',
-    extensions: FILE_EXTENSION,
-    babelHelpers: 'runtime',
-  }),
-];
-
 /**
  * Get All Entry file use Glob
  * Deprecated !!
@@ -48,6 +31,22 @@ const commonPlugins = [
   entry.index = path.resolve(cwd, 'src/index.ts');
   return entry;
 }; */
+
+const commonPlugins = [
+  progress({
+    clearLine: false, // default: true
+  }),
+  json(),
+  commonjs(),
+  nodeResolve({ extensions: FILE_EXTENSION }),
+  typescript(),
+  babel({
+    include: 'src',
+    exclude: 'node_modules/**',
+    extensions: FILE_EXTENSION,
+    babelHelpers: 'runtime',
+  }),
+];
 
 const umdOutPutCommon = {
   format: 'umd',
@@ -105,34 +104,3 @@ export default () => {
       };
   }
 }
-
-/*export default [
-  {
-    input: entryPath,
-    output: [
-      {
-        ...umdOutPutCommon,
-        file: path.resolve(cwd, 'dist', 'tinyuen-utils.js'),
-      },
-      {
-        ...umdOutPutCommon,
-        file: path.resolve(cwd, 'dist', 'tinyuen-utils.min.js'),
-        sourcemap: true,
-        plugins: [
-          terser(),
-        ],
-      },
-      {
-        ...esOutPutCommon,
-        format: 'esm',
-        dir: 'es',
-      },
-      {
-        ...esOutPutCommon,
-        format: 'cjs',
-        dir: 'lib',
-      },
-    ],
-    plugins: commonPlugins,
-  },
-];*/
