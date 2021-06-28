@@ -9,7 +9,10 @@
     "patch": "npm version patch",
     "minor": "npm version minor",
     "major": "npm version major",
-    "build:file": "rimraf es lib dist && rollup -c ./scripts/rollup/rollup.config.js",
+    "build:umd": "rimraf dist && cross-env PACK_ENV=umd rollup -c ./scripts/rollup/rollup.config.js",
+    "build:esm": "rimraf es && cross-env PACK_ENV=esm rollup -c ./scripts/rollup/rollup.config.js",
+    "build:cjs": "rimraf lib && cross-env PACK_ENV=cjs rollup -c ./scripts/rollup/rollup.config.js",
+    "build:file": "npm run build:umd && npm run build:esm && npm run build:cjs",
     "build:types": "rimraf types && tsc --outDir types -d --emitDeclarationOnly",
     "build:all": "npm version patch && npm run build:file && npm run build:types",
     "pub": "npm publish --access public"
@@ -32,6 +35,7 @@
   ],
   "main": "lib/index.js",
   "module": "es/index.js",
+  "unpkg": "dist/tinyuen-utils.min.js",
   "typings": "types/index.d.ts",
   "files": [
     "es",

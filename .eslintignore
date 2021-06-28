@@ -1,0 +1,8 @@
+dist/
+es/
+lib/
+scripts/
+types/
+public/
+examples/
+node_modules/

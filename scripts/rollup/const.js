@@ -1,4 +1,4 @@
-import pkg from "../../package.json";
+import pkg from '../../package.json';
 
 export const REG_DIR = /(?<=\/src\/)[\w-_]+(?=\/index\.ts)/g;
 export const BANNER_TEXT = [
@@ -12,3 +12,5 @@ export const BANNER_TEXT = [
 ].join('\n');
 
 export const LIBRARY_NAME = 'tinUtil';
+
+export const FILE_EXTENSION = ['.ts', '.js'];
