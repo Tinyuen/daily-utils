@@ -5,6 +5,8 @@ const cwd = process.cwd();
 
 module.exports = {
   mode: "development",
+  // 不加target 在webpack5中，webpack-dev-server 3.x 版本有bug，HMR会失效
+  target: 'web',
   entry: {
     app: path.resolve(cwd, 'examples/index.ts'),
   },

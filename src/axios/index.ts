@@ -1,4 +1,15 @@
-const axios = {
+// import axios from 'axios';
+
+// const instance = axios.create({
+//   baseURL: '/',
+//   timeout: 60 * 1000,
+// });
+//
+// const commonRequest = () => {
+//
+// };
+
+const request = {
   get: () => {
     return new Promise((resolve, _) => {
       resolve('success!');
@@ -9,5 +20,5 @@ const axios = {
   },
 };
 
-export default axios;
+export default request;
 

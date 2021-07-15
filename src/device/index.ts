@@ -4,6 +4,11 @@
  */
 
 /**
+ * 是否是客户端（浏览器）环境
+ */
+const isClient = (): boolean => typeof window !== 'undefined';
+
+/**
  * 获取设备UA
  * @param ua
  */
@@ -11,7 +16,7 @@ const getUserAgent = (ua?: string) => {
   if (ua) {
     return ua.toLowerCase();
   }
-  return typeof window !== 'undefined' && navigator.userAgent ? navigator.userAgent.toLowerCase() : '';
+  return isClient() && navigator.userAgent ? navigator.userAgent.toLowerCase() : '';
 };
 
 /**
@@ -173,6 +178,7 @@ const isInMinProgram = (ua?: string) => {
 };
 
 const device = {
+  isClient,
   isWeChat,
   isBaiduApp,
   isAndroid,
