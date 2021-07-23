@@ -1,6 +1,6 @@
 {
   "name": "@tinyuen/utils",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "daily utils for development",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
