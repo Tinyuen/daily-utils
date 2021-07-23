@@ -12,14 +12,15 @@ branches:
 install:
   - npm install
 script:
-  - echo -e "\e[1;32m [Build 1/5] Building Umd \e[0m"
   - npm run build:umd
-  - echo -e "\e[1;32m [Build 2/5] Building Esm \e[0m"
   - npm run build:esm
-  - echo -e "\e[1;32m [Build 3/5] Building Commonjs \e[0m"
   - npm run build:cjs
-  - echo -e "\e[1;32m [Build 4/5] Building Declaration \e[0m"
   - npm run build:types
-  - echo -e "\e[1;32m [Build 5/5] Publish \e[0m"
-  - npm publish --access public
+deploy:
+  provider: npm
+  email: "$NPM_EMAIL"
+  api_key: "$NPM_API_TOKEN"
+  skip_cleanup: true
+  on:
+    branch: main
 

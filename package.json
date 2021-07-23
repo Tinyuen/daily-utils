@@ -1,6 +1,6 @@
 {
   "name": "@tinyuen/utils",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "daily utils for development",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,7 +14,7 @@
     "build:cjs": "rimraf lib && cross-env PACK_ENV=cjs rollup -c ./scripts/rollup/rollup.config.js",
     "build:file": "npm run build:umd && npm run build:esm && npm run build:cjs",
     "build:types": "rimraf types && tsc --outDir types -d --emitDeclarationOnly",
-    "build:all": "npm version patch && npm run build:file && npm run build:types",
+    "build:all": "npm run build:file && npm run build:types",
     "pub": "npm publish --access public"
   },
   "repository": {
