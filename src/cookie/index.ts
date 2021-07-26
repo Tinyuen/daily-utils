@@ -1,14 +1,12 @@
-/**
- * Cookie utils
- */
-import { device, objectUtil } from '../index';
+import { isClient } from '../device';
+import { objectUtil } from '../object';
 
 /**
  * 获取 cookie
- * @param key
+ * @param key cookie key
  */
-const getCookie = (key: string) => {
-  if (!device.isClient()) {
+export const getCookie = (key: string) => {
+  if (!isClient()) {
     return '';
   }
   let result = '';
@@ -28,10 +26,21 @@ const getCookie = (key: string) => {
 
 /**
  * 设置 cookie
+ * @param key
+ * @param value
+ * @param expired
  */
-function setCookie(key: string, value: string, expired?: number): void;
-function setCookie(params: {key: string; value: string; domain?: string; expired?: number}): void;
-function setCookie(...args) {
+export function setCookie(key: string, value: string, expired?: number): void;
+/**
+ * 设置 cookie
+ * @param params
+ */
+export function setCookie(params: {key: string; value: string; domain?: string; expired?: number}): void;
+/**
+ * 设置 cookie
+ * @param args
+ */
+export function setCookie(...args) {
   let domain = '';
   let [key, value, expired] = args;
   if (objectUtil.isObject(key)) {
@@ -57,7 +66,7 @@ function setCookie(...args) {
  * 删除 cookie
  * @param key
  */
-const deleteCookie = (key: string, domain?: string) => {
+export const deleteCookie = (key: string, domain?: string) => {
   if (domain) {
     setCookie({
       key,
@@ -70,10 +79,8 @@ const deleteCookie = (key: string, domain?: string) => {
   }
 };
 
-const cookies = {
+export default {
   get: getCookie,
   set: setCookie,
   delete: deleteCookie,
 };
-
-export default cookies;
