@@ -1,6 +1,30 @@
 import { isClient } from '../device';
 import { objectUtil } from '../object';
 
+export declare function ISetCookieHandler(key: string, value: string, expired?: number): void;
+export declare function ISetCookieHandler(params: {
+  key: string;
+  value: string;
+  domain?: string;
+  expired?: number;
+}): void;
+export interface ICookies {
+  /**
+   * 获取 cookie
+   * @param key cookie key
+   */
+  get: (key: string) => string;
+  /**
+   * 设置 cookie
+   */
+  set: typeof ISetCookieHandler;
+  /**
+   * 删除 cookie
+   * @param key
+   */
+  delete: (key: string, domain?: string) => void;
+}
+
 /**
  * 获取 cookie
  * @param key cookie key
@@ -65,6 +89,7 @@ export function setCookie(...args) {
 /**
  * 删除 cookie
  * @param key
+ * @param domain
  */
 export const deleteCookie = (key: string, domain?: string) => {
   if (domain) {
@@ -79,8 +104,10 @@ export const deleteCookie = (key: string, domain?: string) => {
   }
 };
 
-export default {
+const cookies: ICookies = {
   get: getCookie,
   set: setCookie,
   delete: deleteCookie,
 };
+export default cookies;
+

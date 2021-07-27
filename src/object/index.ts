@@ -1,9 +1,54 @@
-/**
- * Object utils
- * ObjectUtil.isObject({});
- */
-
-type checkTypeFunction = (data: any) => boolean;
+export type IObjectUtilHandler = (data: any) => boolean;
+export interface IObjectUtil {
+  /**
+   * 类型判断：是否是 Boolean
+   */
+  isBoolean: IObjectUtilHandler;
+  /**
+   * 类型判断：是否是 Undefined
+   */
+  isUndefined: IObjectUtilHandler;
+  /**
+   * 类型判断：是否是 Number
+   */
+  isNumber: IObjectUtilHandler;
+  /**
+   * 类型判断：是否是 String
+   */
+  isString: IObjectUtilHandler;
+  /**
+   * 类型判断：是否是 Symbol
+   */
+  isSymbol: IObjectUtilHandler;
+  /**
+   * 类型判断：是否是 Null:
+   */
+  isNull: IObjectUtilHandler;
+  /**
+   * 类型判断：是否是 RegExp
+   */
+  isRegExp: IObjectUtilHandler;
+  /**
+   * 类型判断：是否是 Object
+   */
+  isObject: IObjectUtilHandler;
+  /**
+   * 类型判断：是否是 Array
+   */
+  isArray: IObjectUtilHandler;
+  /**
+   * 类型判断：是否是 Function
+   */
+  isFunction: IObjectUtilHandler;
+  /**
+   * 类型判断：是否是 Date:
+   */
+  isDate: IObjectUtilHandler;
+  /**
+   * 类型判断：是否是 Error
+   */
+  isError: IObjectUtilHandler;
+}
 
 const OBJECT_TYPES = [
   'Boolean',
@@ -20,60 +65,24 @@ const OBJECT_TYPES = [
   'Error',
 ];
 
-const typeChecker: {[key: string]: checkTypeFunction} = {};
+const typeChecker: {[key: string]: IObjectUtilHandler} = {};
 
 OBJECT_TYPES.forEach(type => {
   typeChecker[`is${type}`] = (data: any) => Object.prototype.toString.call(data) === `[object ${type}]`;
 });
 
-export const objectUtil = {
-  /**
-   * 类型判断：是否是 Boolean
-   */
+export const objectUtil: IObjectUtil = {
   isBoolean: typeChecker.isBoolean,
-  /**
-   * 类型判断：是否是 Undefined
-   */
   isUndefined: typeChecker.isUndefined,
-  /**
-   * 类型判断：是否是 Number
-   */
   isNumber: typeChecker.isNumber,
-  /**
-   * 类型判断：是否是 String
-   */
   isString: typeChecker.isString,
-  /**
-   * 类型判断：是否是 Symbol
-   */
   isSymbol: typeChecker.isSymbol,
-  /**
-   * 类型判断：是否是 Null:
-   */
   isNull: typeChecker.isNull,
-  /**
-   * 类型判断：是否是 RegExp
-   */
   isRegExp: typeChecker.isRegExp,
-  /**
-   * 类型判断：是否是 Object
-   */
   isObject: typeChecker.isObject,
-  /**
-   * 类型判断：是否是 Array
-   */
   isArray: typeChecker.isArray,
-  /**
-   * 类型判断：是否是 Function
-   */
   isFunction: typeChecker.isFunction,
-  /**
-   * 类型判断：是否是 Date:
-   */
   isDate: typeChecker.isDate,
-  /**
-   * 类型判断：是否是 Error
-   */
   isError: typeChecker.isError,
 };
 

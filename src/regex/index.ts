@@ -1,3 +1,42 @@
+export type IRegexUtilHandler = (target: string) => boolean;
+export interface IRegexUtil {
+  /**
+   * 校验：是否合法的手机号
+   * @param phone
+   */
+  isValidPhone: IRegexUtilHandler;
+  /**
+   * 校验：是否合法的固话
+   * @param tel
+   */
+  isValidTel: IRegexUtilHandler;
+  /**
+   * 校验：是否是合法银行卡号
+   * @param bank
+   */
+  isValidBankNo: IRegexUtilHandler;
+  /**
+   * 校验：是否是合法的邮箱
+   * @param email
+   */
+  isValidEmail: IRegexUtilHandler;
+  /**
+   * 校验：是否是合法的邮编
+   * @param postcode
+   */
+  isValidPostcode: IRegexUtilHandler;
+  /**
+   * 校验：是否是合法的数字
+   * @param number
+   */
+  isValidNumber: IRegexUtilHandler;
+  /**
+   * 校验：是否是合法的中文
+   * @param cn
+   */
+  isValidChinese: IRegexUtilHandler;
+}
+
 /** 手机 */
 export const REG_PHONE = /^1[3456789]\d{9}$/;
 /** 固话 */
@@ -23,7 +62,7 @@ const REG_MAPPING = {
   cn: REG_CN,
 };
 
-const checkValid = (value: string, type: string) => {
+const checkValid = (value: string, type: string): boolean => {
   if (!value) {
     return false;
   }
@@ -34,39 +73,39 @@ const checkValid = (value: string, type: string) => {
  * 校验：是否合法的手机号
  * @param phone
  */
-export const isValidPhone = (phone: string) => checkValid(phone, 'phone');
+export const isValidPhone: IRegexUtilHandler = (phone: string) => checkValid(phone, 'phone');
 /**
  * 校验：是否合法的固话
  * @param tel
  */
-export const isValidTel = (tel: string) => checkValid(tel, 'tel');
+export const isValidTel: IRegexUtilHandler = (tel: string) => checkValid(tel, 'tel');
 /**
  * 校验：是否是合法银行卡号
  * @param bank
  */
-export const isValidBankNo = (bank: string) => checkValid(bank, 'bank');
+export const isValidBankNo: IRegexUtilHandler = (bank: string) => checkValid(bank, 'bank');
 /**
  * 校验：是否是合法的邮箱
  * @param email
  */
-export const isValidEmail = (email: string) => checkValid(email, 'email');
+export const isValidEmail: IRegexUtilHandler = (email: string) => checkValid(email, 'email');
 /**
  * 校验：是否是合法的邮编
  * @param postcode
  */
-export const isValidPostcode = (postcode: string) => checkValid(postcode, 'postcode');
+export const isValidPostcode: IRegexUtilHandler = (postcode: string) => checkValid(postcode, 'postcode');
 /**
  * 校验：是否是合法的数字
  * @param number
  */
-export const isValidNumber = (number: string) => checkValid(number, 'number');
+export const isValidNumber: IRegexUtilHandler = (number: string) => checkValid(number, 'number');
 /**
  * 校验：是否是合法的中文
  * @param cn
  */
-export const isValidChinese = (cn: string) => checkValid(cn, 'cn');
+export const isValidChinese: IRegexUtilHandler = (cn: string) => checkValid(cn, 'cn');
 
-export default {
+const regexUtil: IRegexUtil = {
   isValidPhone,
   isValidTel,
   isValidBankNo,
@@ -75,3 +114,5 @@ export default {
   isValidNumber,
   isValidChinese,
 };
+
+export default regexUtil;
