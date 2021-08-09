@@ -270,7 +270,7 @@ export const isInMinProgram: IDeviceHandler = (ua?: string) => {
   );
 };
 
-const device: IDevice = {
+const tinDevice: IDevice = {
   isClient,
   isWeChat,
   isBaiduApp,
@@ -291,4 +291,4 @@ const device: IDevice = {
   isInApp,
   isInMinProgram,
 };
-export default device;
+export default tinDevice;

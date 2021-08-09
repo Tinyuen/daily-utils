@@ -1,20 +1,20 @@
-import _device from './device';
-import _axios from './axios';
-import _objectUtil from './object';
-import _cookies from './cookie';
-import _regexUtil from './regex';
+import _tinDevice from './device';
+import _tinObject from './object';
+import _tinCookies from './cookie';
+import _tinRegex from './regex';
+import _tinStorage from './storage';
 
-const device = _device;
-const axios = _axios;
-const objectUtil = _objectUtil;
-const cookies = _cookies;
-const regexUtil = _regexUtil;
+const tinDevice = _tinDevice;
+const tinObject = _tinObject;
+const tinCookies = _tinCookies;
+const tinRegex = _tinRegex;
+const tinStorage = _tinStorage;
 
 export {
-  device,
-  axios,
-  objectUtil,
-  cookies,
-  regexUtil,
+  tinDevice,
+  tinObject,
+  tinCookies,
+  tinRegex,
+  tinStorage,
 };
 

@@ -104,10 +104,10 @@ export const deleteCookie = (key: string, domain?: string) => {
   }
 };
 
-const cookies: ICookies = {
+const tinCookies: ICookies = {
   get: getCookie,
   set: setCookie,
   delete: deleteCookie,
 };
-export default cookies;
+export default tinCookies;
 

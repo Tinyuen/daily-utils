@@ -105,7 +105,7 @@ export const isValidNumber: IRegexUtilHandler = (number: string) => checkValid(n
  */
 export const isValidChinese: IRegexUtilHandler = (cn: string) => checkValid(cn, 'cn');
 
-const regexUtil: IRegexUtil = {
+const tinRegex: IRegexUtil = {
   isValidPhone,
   isValidTel,
   isValidBankNo,
@@ -115,4 +115,4 @@ const regexUtil: IRegexUtil = {
   isValidChinese,
 };
 
-export default regexUtil;
+export default tinRegex;

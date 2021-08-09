@@ -71,7 +71,7 @@ OBJECT_TYPES.forEach(type => {
   typeChecker[`is${type}`] = (data: any) => Object.prototype.toString.call(data) === `[object ${type}]`;
 });
 
-export const objectUtil: IObjectUtil = {
+export const tinObject: IObjectUtil = {
   isBoolean: typeChecker.isBoolean,
   isUndefined: typeChecker.isUndefined,
   isNumber: typeChecker.isNumber,
@@ -86,4 +86,4 @@ export const objectUtil: IObjectUtil = {
   isError: typeChecker.isError,
 };
 
-export default objectUtil;
+export default tinObject;
