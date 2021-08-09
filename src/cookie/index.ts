@@ -1,5 +1,5 @@
 import { isClient } from '../device';
-import { objectUtil } from '../object';
+import { tinObject } from '../object';
 
 export declare function ISetCookieHandler(key: string, value: string, expired?: number): void;
 export declare function ISetCookieHandler(params: {
@@ -36,7 +36,7 @@ export const getCookie = (key: string) => {
   let result = '';
   const cookieStr = document.cookie;
   const cookieStrList = cookieStr.split('; ');
-  if (objectUtil.isArray(cookieStrList) && cookieStrList.length > 0) {
+  if (tinObject.isArray(cookieStrList) && cookieStrList.length > 0) {
     for (let i = 0; i < cookieStrList.length; i++) {
       const [_key, _value] = cookieStrList[i].split('=');
       if (key === _key) {
@@ -67,7 +67,7 @@ export function setCookie(params: {key: string; value: string; domain?: string; 
 export function setCookie(...args) {
   let domain = '';
   let [key, value, expired] = args;
-  if (objectUtil.isObject(key)) {
+  if (tinObject.isObject(key)) {
     const { key: _key, value: _value, domain: _domain, expired: _expired } = key;
     key = _key;
     value = _value;
@@ -75,7 +75,7 @@ export function setCookie(...args) {
     expired = _expired;
   }
   let cookieStr = `${key}=${value};path=/`;
-  if (objectUtil.isNumber(expired)) {
+  if (tinObject.isNumber(expired)) {
     const date = new Date();
     date.setTime(date.getTime() + (expired * 1000));
     cookieStr += `;expires=${date.toUTCString()}`;
