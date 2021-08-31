@@ -13,6 +13,7 @@
     "no-shadow": ["error", { "allow": ["done"] }],
     "no-var": "error",
     "arrow-parens": "off",
-    "no-multiple-empty-lines": "off"
+    "no-multiple-empty-lines": "off",
+    "no-use-before-define": "off"
   }
 }

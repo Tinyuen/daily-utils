@@ -94,7 +94,31 @@ export interface IDevice {
    * @param ua
    */
   isInMinProgram: IDeviceHandler;
+  /**
+   * 是否iPhone X
+   */
+  isIphoneX: IDeviceHandler;
+  /**
+   * 获取IOS设备版本号
+   */
+  getIosVersion: () => number;
+  /**
+   * 获取Android设备版本号
+   */
+  getAndroidVersion: () => number;
+  /**
+   * 获取Chrome设备版本号
+   */
+  getChromeVersion: () => number;
 }
+
+const getVersion = (versionInfo: RegExpMatchArray | null): number => {
+  if (!versionInfo) {
+    return 0;
+  }
+  const str = (`${versionInfo}`).replace(/[^0-9|_.]/gi, '').replace(/_/gi, '.'); // 得到版本号4.2.2
+  return parseInt(str.split('.')[0], 10); // 得到版本号第一位
+};
 
 /**
  * 是否是客户端（浏览器）环境
@@ -270,6 +294,59 @@ export const isInMinProgram: IDeviceHandler = (ua?: string) => {
   );
 };
 
+/**
+ * 是否iPhone X
+ */
+export const isIphoneX: IDeviceHandler = () => {
+  if (isIOS()) {
+    return (window.screen.availHeight === 812 && window.screen.availWidth === 375)
+      || (window.screen.availHeight === 896 && window.screen.availWidth === 414);
+  }
+  return false;
+};
+
+/**
+ * 获取IOS版本
+ * @param ua
+ */
+export const getIosVersion = (ua?: string): number => {
+  const _ua = getUserAgent(ua);
+  let version = 0;
+  if (_ua.indexOf('like mac os x') > 0) {
+    const vInfo = _ua.match(/os [\d._]+/gi);
+    version = getVersion(vInfo);
+  }
+  return version;
+};
+
+/**
+ * 获取安卓版本
+ * @param ua
+ */
+export const getAndroidVersion = (ua?: string): number => {
+  const _ua = getUserAgent(ua);
+  let version = 0;
+  if (_ua.indexOf('android') > 0) {
+    const vInfo = _ua.match(/android [\d._]+/gi);
+    version = getVersion(vInfo);
+  }
+  return version;
+};
+
+/**
+ * 获取chrome版本
+ * @param ua
+ */
+export const getChromeVersion = (ua?: string): number => {
+  const _ua = getUserAgent(ua);
+  let version = 0;
+  if (_ua.indexOf('chrome') > 0) {
+    const vInfo = _ua.match(/chrome\/[\d._]+/gi);
+    version = getVersion(vInfo);
+  }
+  return version;
+};
+
 const tinDevice: IDevice = {
   isClient,
   isWeChat,
@@ -290,5 +367,9 @@ const tinDevice: IDevice = {
   isAliApp,
   isInApp,
   isInMinProgram,
+  isIphoneX,
+  getIosVersion,
+  getAndroidVersion,
+  getChromeVersion,
 };
 export default tinDevice;
