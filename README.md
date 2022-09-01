@@ -45,7 +45,9 @@ console.log(device.isWeChat())
 ## 感谢 Jetbrains 的支持
 本项目使用 WebStorm 开发工具开发，感谢 Jetbrains 提供了这么棒的软件！
 
+<a href="https://www.jetbrains.com/">
 <img style="display: inline;" width="70" height="70" src="https://cdn.mariwellness.cn/webstorm-only/jet-brains.png">
 <img style="display: inline;" height="70" src="https://cdn.mariwellness.cn/webstorm-only/logo-webstorm.png">
+</a>
 
 
