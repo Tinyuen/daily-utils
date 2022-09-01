@@ -42,4 +42,7 @@ console.log(device.isWeChat())
 
 工具库不包含任何 polyfill，包括但不限于 `Promise`、`map`、`includes`... 需要使用方手动处理 polyfill。
 
+## 感谢 Jetbrains 的支持
+<img src="">
+
 
